@@ -1,0 +1,16 @@
+        if ( Trello::where('user_id','=', Auth::user()->id)->first() ){
+
+            $user_trello = trello::where('user_id','=', Auth::user()->id)->first();
+            $user_trello->trello_id = $user->id;
+            $user_trello->email = $user->email;
+            $user_trello->name = $user->name;
+            $user_trello->save();
+
+        } else {
+            $trello = new Trello;
+            $trello->user_id = Auth::user()->id;
+            $trello->trello_id = $user->id;
+            $trello->email = $user->email;
+            $trello->name = $user->name;
+            $trello->save();
+        }
